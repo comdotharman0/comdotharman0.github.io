@@ -83,7 +83,7 @@ let enc = new JJSREncryption(email.value, sitename.value);
 output.innerHTML = enc.encrypt();
     
 }
-
+Generate();
 
 btn.onclick = Generate;
 let e = new JJSREncryption("glohhhhhyyyyxxx@ghm","github");
