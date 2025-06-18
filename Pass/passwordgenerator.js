@@ -89,6 +89,7 @@ output.innerHTML = enc.encrypt();
 Generate();
 copyBtn.onclick = function(){
     navigator.clipboard.writeText(output.innerHTML);
+    alert("copied");
 }
   
 btn.onclick = Generate;
