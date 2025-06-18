@@ -88,7 +88,7 @@ Generate();
 
 btn.onclick = Generate;
 let e = new JJSREncryption("glohhhhhyyyyxxx@ghm","github");
-alert(e.encrypt());
+//alert(e.encrypt());
 
 
 }catch(err){
