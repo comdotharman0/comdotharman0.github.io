@@ -79,9 +79,10 @@ const output = document.getElementById("output");
 const btn = document.getElementById("btn");
 
 function Generate(){
+    
 let enc = new JJSREncryption(email.value, sitename.value);
 output.innerHTML = enc.encrypt();
-    
+    alert(enc.encrypt());
 }
 Generate();
 
