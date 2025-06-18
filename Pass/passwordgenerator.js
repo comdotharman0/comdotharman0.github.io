@@ -7,6 +7,7 @@ class JJSREncryption{
          this.lca = "abcdefghijklmnopqrstuvwxyz";
 this.uca = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 this.signs = "[]{}<>&_%√|\\~`^@$()/':;#!?";
+this.all = this.uca+this.lca+this.nums+this.signs;
 this.repla = {"a":"@","b":"|o",
 "d":"o|","h":"|n","i":"!","j":"?",
 "k":"|/-","l":"|","m":"nn","w":"vv","x":"*"};
@@ -56,15 +57,18 @@ for(let i of text1){
         text = text1+text2;
         return text;
     }
+    AddSomethingRandom(reff=this.all){
+        let pass ="";
+        for(let i =0;i<this.Random(0,this.email.length);i++){
+            pass+=this.all[this.Random(0,this.all.length)];      
+        }
+        return pass;
+    }
     encrypt(){
         let pass="";
         pass = this.Transform(this.email,this.repla);
-        for(let i =0;i<this.Random(0,this.email.length);i++){
-            pass+=this.signs[this.Random(0,this.signs.length)];
-            
-            
-        }
-        pass+= this.shuffle(this.sitename,2);
+        pass+= this.AddSomethingRandom();
+        pass+= this.shuffle(this.sitename,this.Random(0,(this.sitename.length-1)));
         return pass;
         
     }
