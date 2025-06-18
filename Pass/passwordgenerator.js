@@ -10,7 +10,8 @@ this.signs = "[]{}<>&_%√|\\~`^@$()/':;#!?";
 this.all = this.uca+this.lca+this.nums+this.signs;
 this.repla = {"a":"@","b":"|o",
 "d":"o|","h":"|n","i":"!","j":"?",
-"k":"|/-","l":"|","m":"nn","w":"vv","x":"*"};
+"k":"|/-","l":"|","m":"nn","r":"|**","s":"_/**","t":"-|-",
+              "w":"vv","x":"*","z":"**/_"};
     }
     contains(big,small){
         let contains = false;
