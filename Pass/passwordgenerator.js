@@ -82,7 +82,7 @@ function Generate(){
     
 let enc = new JJSREncryption(email.value, sitename.value);
 output.innerHTML = enc.encrypt();
-    alert(enc.encrypt());
+   // alert(enc.encrypt());
 }
 Generate();
 
