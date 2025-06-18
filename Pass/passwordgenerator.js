@@ -74,7 +74,7 @@ for(let i of text1){
     }
 }
 const email = document.getElementById("email");
-const sitename = document.getElementById("sitenamw");
+const sitename = document.getElementById("sitename");
 const output = document.getElementById("output");
 const btn = document.getElementById("btn");
 
