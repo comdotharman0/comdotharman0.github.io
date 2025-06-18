@@ -78,6 +78,7 @@ const email = document.getElementById("email");
 const sitename = document.getElementById("sitename");
 const output = document.getElementById("output");
 const btn = document.getElementById("btn");
+const copyBtn = document.getElementById("copyBtn");
 
 function Generate(){
     
@@ -86,7 +87,10 @@ output.innerHTML = enc.encrypt();
    
 }
 Generate();
-
+copyBtn.onclick = function(){
+    navigator.clipboard.writeText(output.innerHTML);
+}
+  
 btn.onclick = Generate;
 
 
