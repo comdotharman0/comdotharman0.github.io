@@ -69,14 +69,23 @@ for(let i of text1){
         
     }
 }
+const email = document.getElementById("email");
+const sitename = document.getElementById("sitenamw");
+const output = document.getElementById("output");
+const btn = document.getElementById("btn");
+
+function Generate(){
+let enc = new JJSREncryption(email.value, sitename.value);
+output.innerHTML = enc.encrypt();
+    
+}
 
 
-
-
+btn.onclick = Generate;
 let e = new JJSREncryption("glohhhhhyyyyxxx@ghm","github");
 alert(e.encrypt());
 
-  
+
 }catch(err){
   alert(err+" is the error");
 }
