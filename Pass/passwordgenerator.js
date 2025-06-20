@@ -16,9 +16,17 @@ this.repla = {"a":["@","/-\\","/4","4","A","Æ"],
               "f":["|=","F","7"],
               "g":["8","G","|*_,-,"],
               "h":["|n","H","|-|","|=|","#",],
-              "i":"!","j":"?",
-"k":"|/-","l":"|","m":"nn","r":"|**","s":"_/**","t":"-|-",
-              "w":"vv","x":"*","z":"**/_"};
+              "i":["!","I","1","Í","Î"],
+              "j":["?"],
+              "k":["|/-","|<","1<","K"],
+              "l":"|",
+              "m":"nn",
+              "r":"|**"
+              ,"s":"_/**"
+              ,"t":"-|-",
+              "w":"vv"
+              ,"x":"*"
+              ,"z":"**/_"};
     }
     contains(big,small){
         let contains = false;
@@ -41,7 +49,7 @@ for(let i of text1){
       //  console.log(i,j
       
         if(this.contains(transruleObj,i)[0]){
-            pass+=transruleObj[i];
+            pass+=transruleObj[i][this.Random(0,i.length)];
         }else{
             pass+=i;
           continue
@@ -96,7 +104,7 @@ output.innerHTML = enc.encrypt();
 Generate();
 copyBtn.onclick = function(){
     navigator.clipboard.writeText(output.innerHTML);
-    alert("copied");
+    alert("Copied! The password is "+output.innerHTML);
 }
   
 btn.onclick = Generate;
