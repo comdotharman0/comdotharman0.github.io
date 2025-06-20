@@ -56,7 +56,9 @@ for(let i of text1){
       //  console.log(i,j
       
         if(this.contains(transruleObj,i)[0]){
-            pass+=transruleObj[i][this.Random(0,i.length)];
+            let randomIndex = this.Random(0,transruleObj[i].length)
+          //  alert(randomIndex);
+            pass+=transruleObj[i][randomIndex];
         }else{
             pass+=i;
           continue
