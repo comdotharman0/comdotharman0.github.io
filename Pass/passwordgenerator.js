@@ -117,7 +117,9 @@ copyBtn.onclick = function(){
 }
   
 btn.onclick = Generate;
-
+function CreateRandomWords(letters){
+    if()
+}
 
 }catch(err){
   alert(err+" is the error");
