@@ -1,4 +1,4 @@
-try{
+
 class JJSREncryption{
     constructor(email,sitename){
         this.sitename = sitename;
@@ -111,6 +111,8 @@ output.innerHTML = enc.encrypt();
    
 }
 Generate();
+try{
+    alert("working");
 copyBtn.onclick = function(){
     navigator.clipboard.writeText(output.innerHTML);
     alert("Copied! The password is "+output.innerHTML);
