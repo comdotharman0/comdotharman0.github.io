@@ -116,7 +116,7 @@ copyBtn.onclick = function(){
     alert("Copied! The password is "+output.innerHTML);
 }
   
-btn.onclick = Generate;
+copyBtn.onclick = Generate;
 function CreateRandomWords(letters){
     //if()
 }
