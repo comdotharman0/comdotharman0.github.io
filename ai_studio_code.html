@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harman Singh | Cyber-Security & Data Science</title>
+    
+    <!-- Google Fonts: Orbitron for Sci-Fi, Fira Code for Code-style -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --bg-color: #050505;
+            --neon-cyan: #00f3ff;
+            --neon-green: #39ff14;
+            --neon-purple: #bc13fe;
+            --neon-red: #ff3131;
+            --text-color: #e0e0e0;
+            --glow-shadow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Fira Code', monospace;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Matrix Background */
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.85);
+            border-bottom: 1px solid var(--neon-cyan);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            text-shadow: var(--glow-shadow);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        nav ul li a:hover {
+            color: var(--neon-cyan);
+            text-shadow: var(--glow-shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan);
+            margin-bottom: 10px;
+            animation: flicker 3s infinite;
+        }
+
+        .typewriter {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            min-height: 1.6em;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-purple);
+            text-shadow: 0 0 10px var(--neon-purple);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            border-left: 5px solid var(--neon-purple);
+            padding-left: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            transition: 0.4s;
+            text-align: center;
+        }
+
+        .card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: var(--glow-shadow);
+            transform: translateY(-10px);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .card i.icon {
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+        }
+
+        /* Social Media Section */
+        .social-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 2rem;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+            color: var(--text-color);
+        }
+
+        /* Neon Hovers for Socials */
+        .social-btn.github:hover {
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 0 0 20px #fff;
+        }
+        .social-btn.linkedin:hover {
+            color: #0077b5;
+            border-color: #0077b5;
+            box-shadow: 0 0 20px #0077b5;
+        }
+        .social-btn.twitter:hover {
+            color: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+        .social-btn.thm:hover {
+            color: var(--neon-red);
+            border-color: var(--neon-red);
+            box-shadow: 0 0 20px var(--neon-red);
+        }
+
+        /* Animations & Tags */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.4; }
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(57, 255, 20, 0.1);
+            color: var(--neon-green);
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin: 5px 5px 0 0;
+            border: 1px solid var(--neon-green);
+        }
+
+        .btn-neon {
+            margin-top: 30px;
+            padding: 15px 30px;
+            border: 2px solid var(--neon-cyan);
+            background: transparent;
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-neon:hover {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <nav>
+        <div class="logo">HARMAN_SINGH</div>
+        <ul>
+            <li><a href="#about">// About</a></li>
+            <li><a href="#skills">// Skills</a></li>
+            <li><a href="#social">// Social</a></li>
+            <li><a href="#contact">// Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1 id="name">HARMAN SINGH</h1>
+        <div class="typewriter" id="typewriter"></div>
+        <a href="#skills" class="btn-neon">Initialize Portfolio</a>
+    </header>
+
+    <section id="about">
+        <h2>System.info</h2>
+        <p style="line-height: 1.8; color: #bbb;">
+            > Harman Singh is a security researcher specializing in <span style="color: var(--neon-cyan);">Cybersecurity</span> and <span style="color: var(--neon-purple);">Data Science</span>.<br><br>
+            > Passionate about memory-safe engineering in <span style="color: #ff4b2b;">Rust</span>, automated pentesting with <span style="color: var(--neon-green);">Python</span>, and deep-learning threat detection models.
+        </p>
+    </section>
+
+    <section id="skills">
+        <h2>Core_Protocols</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-shield-virus icon"></i>
+                <h3>Ethical Hacking</h3>
+                <p>Pentesting, CTFs, Network Forensics.</p>
+                <div class="tag">Kali</div><div class="tag">BurpSuite</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-brain icon"></i>
+                <h3>AI & Data Science</h3>
+                <p>ML, Neural Networks, Predictive Analytics.</p>
+                <div class="tag">TensorFlow</div><div class="tag">Pandas</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-terminal icon"></i>
+                <h3>Engineering</h3>
+                <p>Low-level security tools and automation.</p>
+                <div class="tag">Python</div><div class="tag">Rust</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section id="social">
+        <h2>Network_Links</h2>
+        <div class="social-container">
+            <!-- GitHub -->
+            <a href="https://github.com/HarmanSingh" target="_blank" class="social-btn github">
+                <i class="fab fa-github"></i>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/HarmanSingh" target="_blank" class="social-btn linkedin">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <!-- Twitter/X -->
+            <a href="https://twitter.com/HarmanSingh" target="_blank" class="social-btn twitter">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <!-- TryHackMe (Represented with shield for Cyber theme) -->
+            <a href="https://tryhackme.com/p/HarmanSingh" target="_blank" class="social-btn thm">
+                <i class="fas fa-user-secret"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Establish_Connection</h2>
+        <div class="card">
+            <p>Ready to transmit. Reach out for collaborations or security consultations.</p>
+            <br>
+            <p style="color: var(--neon-cyan); font-weight: bold;">harman.singh@vault.exe</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 Harman Singh | [Authorized Personnel Only]
+    </footer>
+
+    <script>
+        /* --- JAVASCRIPT LOGIC --- */
+
+        // 1. Matrix Canvas Effect
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%&_<>[]";
+        const fontSize = 16;
+        const columns = Math.floor(canvas.width / fontSize);
+        const rainDrops = Array.from({ length: columns }).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 30);
+
+        // 2. Typewriter Effect
+        const roles = [
+            "Ethical Hacker // Security Researcher",
+            "Data Scientist // AI Developer",
+            "Python Specialist...",
+            "Rust Language Enthusiast..."
+        ];
+        
+        let roleIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        const typewriterDiv = document.getElementById('typewriter');
+
+        function type() {
+            const current = roles[roleIdx];
+            
+            if (isDeleting) {
+                typewriterDiv.textContent = current.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typewriterDiv.textContent = current.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let speed = isDeleting ? 40 : 100;
+
+            if (!isDeleting && charIdx === current.length) {
+                speed = 2000; 
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                roleIdx = (roleIdx + 1) % roles.length;
+                speed = 500;
+            }
+
+            setTimeout(type, speed);
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+</body>
+</html>
